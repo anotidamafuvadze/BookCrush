@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+.bebas-neue-header {
+  font-family: "Bebas Neue", sans-serif;
+  color: rgb(255, 244, 214);
+  font-size: 8rem; /* Restore larger header size */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 3px;
+  margin-bottom: 0.25rem; /* Reduced space below the header */
+  line-height: 1; /* Keeps text compact */
+  margin-top: -0.8rem; /* Slightly move up to balance space */
+}
+
+.playfair-display-subtitle {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 2.2rem; /* Slightly larger subtitle */
+  margin-top: 0; /* Removes any extra space above */
+  color: rgb(0, 0, 0);
+  /* text-shadow: 1px 1px 3px rgba(0, 0, 0, 1); */
+}
+
+.playfair-regular {
+  /* font-family: "Playfair Display", serif; */
+  font-weight: 400;
+  font-style: normal;
+}
+
+.login-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 400px;
+  max-width: 90vw;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.login-input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #000000;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.login-input:focus {
+  outline: black;
+  border-color: #ffc9e4;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+.login-button {
+  background: linear-gradient(135deg, #fff0f7, #ffa9bf);
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #ffeaa9, #fff1f8);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+}

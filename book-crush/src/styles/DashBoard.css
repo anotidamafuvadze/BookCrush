@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.dashboard-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto; /* Enable scrolling */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 3rem !important;
+}
+
+.dashboard-header-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 600px;
+  max-width: 90vw;
+}
+
+.dashboard-input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #000000;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.dashboard-input::placeholder {
+  color: black;
+}
+
+.dashboard-input:focus {
+  outline: none;
+  border-color: #ffc9e4;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+.dashboard-button {
+  background: linear-gradient(135deg, #fff0f7, #ffa9bf);
+    border: 1px solid #000000;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dashboard-button:hover {
+  background: linear-gradient(135deg, #ffeaa9, #fff1f8);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+}
+
+.dashboard-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #ffa9bf;
+}
+
+.yeseva-one-regular {
+  font-family: "Yeseva One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bebas-neue-header {
+  font-family: "Bebas Neue", sans-serif;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 3px;
+  margin: 0;
+  line-height: 1; /* Keeps text compact */
+  margin-top: -0.8rem; /* Slightly move up to balance space */
+}
+
+.trope-category {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.trope-category-header {
+  background: #ffe4eb;
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.trope-category-header:hover {
+  background: #edb2c0;
+}
+
+.trope-options {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.trope-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.trope-option:hover {
+  background: #ffe5ec;
+}
+
+.trope-option input {
+  accent-color: #ffa9bf;
+}
+
+.dashboard-select {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #000000;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+.dashboard-select:focus {
+  outline: none;
+  border-color: #ffc9e4;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
+}
+
+.dashboard-select:hover {
+  background-color: #ffe5ec;
+}
+
+.dashboard-select option {
+  background: #fff0f7; /* Light pink background for options */
+  color: #000; /* Black text for better readability */
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.dashboard-select option:hover {
+  background: #ffc9e4; /* Slightly darker pink on hover */
+}
+
