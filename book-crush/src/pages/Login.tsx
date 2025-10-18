@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { supabase } from '../services/supabase/supabaseClient.ts'
 import { useNavigate, Link } from "react-router-dom";
-import backgroundImage from '../assets/images/background.jpg';
+import backgroundImage from "../assets/images/background.webp";
 import "../styles/Login.css";
 
 export default function LoginPage() {
@@ -37,14 +37,12 @@ export default function LoginPage() {
       className="login-overlay"
     >
       <div className="login-content">
-        <div className="flex flex-col items-center mb-6 text-center">
-          <h1 className="bebas-neue-header text-9xl text-white mb-2 drop-shadow-lg">
+          <h1 className="login-header ">
             BOOK CRUSH
           </h1>
-          <p className="playfair-display-subtitle text-2xl text-white/90 drop-shadow-md mb-4">
+          <p className="playfair-display-subtitle">
             The Tinder for Romance Books
           </p>
-        </div>
 
         <div className="login-card">
           <h2 className="playfair-regular text-3xl text-center mb-8 text-gray-800">

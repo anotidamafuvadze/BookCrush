@@ -1,0 +1,274 @@
+.screen-center {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background: url('../assets/images/background.jpg') no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  color: #ffffff;
+}
+
+.centered-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.swiping-button {
+  background: #ffc9d6;
+  border: 1px solid #000000;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  color: #000000;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.swiping-button:hover {
+  background: #fff8e1;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2);
+}
+
+.screen-center {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #fafafa;
+}
+
+.card-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-card {
+  width: min(92vw, 420px);
+  text-align: center;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+}
+
+.book-cover-wrap {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f4f6;
+  margin-bottom: 12px;
+}
+
+@supports not (aspect-ratio: 2 / 3) {
+  .book-cover-wrap {
+    height: 63vw;
+    max-height: 630px;
+  }
+}
+
+.book-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.book-title {
+  font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 800;
+  color: #111827;
+  margin: 8px 0 4px;
+}
+
+.book-author {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.helper-text {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.alert-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  padding: 12px 14px;
+  border-radius: 10px;
+  width: min(92vw, 420px);
+  margin: 0 auto 12px auto;
+  text-align: center;
+}
+
+.swiping-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.swiping-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 400px;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.swiping-card-cover {
+  width: 100%;
+  height: 80%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.swiping-card-content {
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+  overflow-y: auto;
+  width: 90%;
+  max-height: 40%;
+  margin: 0 auto;
+}
+
+.swiping-card-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.swiping-card-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.swiping-card-content::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+.swiping-card-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f0f0f;
+  margin-bottom: 0.5rem;
+}
+
+.swiping-card-author {
+  font-size: 1.1rem;
+  color: #282828;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.swiping-card-details {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.swiping-card-synopsis {
+  font-size: 1rem;
+  color: #444;
+  margin-top: 0.5rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.swiping-card-message {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #272727;
+  text-align: center;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 320px;
+  font-weight: 600;
+}
+
+.centered-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  gap: 1rem;
+  position: absolute;
+  top: 20px; /* Position the buttons at the top */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.swipe-button {
+  background: #ffc9d6;
+  border: 1px solid #000000;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  color: #000000;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.swipe-button:hover {
+  background: #fff8e1;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2);
+}

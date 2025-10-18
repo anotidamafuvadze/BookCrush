@@ -1,0 +1,113 @@
+.want-to-read-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.bookshelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 30px; /* Increase gap between books */
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+  justify-items: center; /* Center each book in its grid cell */
+  margin-bottom: 50px;
+}
+
+.book-card {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 120px; /* Ensure consistent width for each book */
+  height: 220px; /* Adjust height to accommodate text */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.book-card img {
+  width: 100%;
+  max-width: 120px; /* Set a maximum width */
+  height: auto;
+  max-height: 150px; /* Adjust height for the image */
+  display: block;
+}
+
+.book-card .book-info {
+  text-align: center;
+  padding: 5px;
+}
+
+.book-card .book-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.book-card .book-author {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.book-card .delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.book-card:hover .delete-button {
+  opacity: 1;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 1rem 2rem;
+  background: #ffc9d6; /* Match dashboard button background */
+  border: 1px solid #000000;
+  border-radius: 30px; /* More rounded buttons */
+  font-size: 1.8rem; /* Match dashboard button font size */
+  font-weight: 300; /* Thin font for elegance */
+  font-family: 'Roboto', sans-serif; /* Match dashboard button font */
+  color: #000000;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+}
+
+.back-button:hover {
+  background: #fff8e1; /* Match dashboard button hover background */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2); /* Enhanced shadow on hover */
+}

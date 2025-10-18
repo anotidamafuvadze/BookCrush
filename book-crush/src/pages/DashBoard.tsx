@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/DashBoard.css";
 import { getBooks } from "../services/api/booksAPI.ts";
 import { tropeCategories } from "../lib/tropes.ts";
-import backgroundImage from "../assets/images/background.jpg";
+import backgroundImage from "../assets/images/background.webp";
+import AutoplayCarousel from "../components/AutoplayCarousel.tsx"; // Import the carousel component
 
 function DashBoard() {
   const [filters, setFilters] = useState({
@@ -18,6 +20,8 @@ function DashBoard() {
   });
 
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null); // State for error handling
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -41,6 +45,7 @@ function DashBoard() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null); // Reset error state
     const {
       title,
       author,
@@ -71,8 +76,15 @@ function DashBoard() {
 
     try {
       const books = await getBooks(options);
-      console.log("Books Returned:", books); // Debugging log
+      if (books.length === 0) {
+        navigate("/swiping", {
+          state: { books: [], message: "No books found. Please try again." },
+        });
+      } else {
+        navigate("/swiping", { state: { books } });
+      }
     } catch (error) {
+      setError("Error fetching books. Please try again later.");
       console.error("Error fetching books:", error);
     }
   };
@@ -89,152 +101,173 @@ function DashBoard() {
       }}
       className="dashboard-overlay"
     >
-      <div className="dashboard-content">
-        <div className="flex flex-col items-center mb-6 text-center">
-          <div className="dashboard-header">
-            <h1 className="bebas-neue-header text-3xl text-white drop-shadow-lg dashboard-title">
-              BOOK CRUSH
-            </h1>
-            <div className="dashboard-header-buttons">
-              <button className="dashboard-button">Want to Read</button>
-              <button className="dashboard-button">Logout</button>
+      <div className="dashboard-layout">
+        {/* Left carousel */}
+        <div className="carousel-left">
+          <AutoplayCarousel />
+        </div>
+
+        {/* Dashboard content */}
+        <div className="dashboard-content">
+          {error && (
+            <div className="bg-red-100 text-red-700 p-4 mb-4 rounded">
+              {error}
             </div>
+          )}
+          <div className="">
+            <div className="dashboard-header">
+              <h1>
+                BOOK CRUSH
+              </h1>
+              <div className="dashboard-header-buttons">
+                <button className="dashboard-button" onClick={() => navigate("/want-to-read")}>Want to Read</button>
+                <button className="dashboard-button">Logout</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="dashboard-card">
+            <h2 className="header text-6xl text-center mb-8 text-gray-800">
+              Filter Your Books
+            </h2>
+            <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+              <input
+                type="text"
+                name="title"
+                placeholder="Title"
+                value={filters.title}
+                onChange={handleChange}
+                className="dashboard-input w-full placeholder-black"
+              />
+              <input
+                type="text"
+                name="author"
+                placeholder="Author"
+                value={filters.author}
+                onChange={handleChange}
+                className="dashboard-input w-full placeholder-black"
+              />
+              <select
+                name="subgenre"
+                value={filters.subgenre}
+                onChange={handleChange}
+                className="dashboard-input dashboard-select w-full"
+              >
+                <option value="">Select Subgenre</option>
+                <option value="Contemporary">Contemporary</option>
+                <option value="Dark Romance">Dark Romance</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Gothic">Gothic</option>
+                <option value="Historical">Historical</option>
+                <option value="New Adult">New Adult</option>
+                <option value="Paranormal">Paranormal</option>
+                <option value="Regency">Regency</option>
+                <option value="Rom-Com">Rom-Com</option>
+                <option value="Romantic Suspense">Romantic Suspense</option>
+                <option value="Small Town">Small Town</option>
+                <option value="Sports Romance">Sports Romance</option>
+                <option value="Young Adult">Young Adult</option>
+              </select>
+              <div className="flex space-x-4">
+                <input
+                  type="number"
+                  name="minPages"
+                  placeholder="Min Pages"
+                  value={filters.minPages}
+                  onChange={handleChange}
+                  min="0"
+                  className="dashboard-input w-full placeholder-black"
+                />
+                <input
+                  type="number"
+                  name="maxPages"
+                  placeholder="Max Pages"
+                  value={filters.maxPages}
+                  onChange={handleChange}
+                  min="0"
+                  className="dashboard-input w-full placeholder-black"
+                />
+              </div>
+              <div className="flex space-x-4">
+                <select
+                  name="minRating"
+                  value={filters.minRating}
+                  onChange={handleChange}
+                  className="dashboard-input dashboard-select rating w-full"
+                >
+                  <option value="">Min Rating</option>
+                  <option value="1.0">1.0</option>
+                  <option value="2.0">2.0</option>
+                  <option value="3.0">3.0</option>
+                  <option value="4.0">4.0</option>
+                </select>
+                <select
+                  name="maxRating"
+                  value={filters.maxRating}
+                  onChange={handleChange}
+                  className="dashboard-input dashboard-select rating w-full"
+                >
+                  <option value="">Max Rating</option>
+                  <option value="1.0">1.0</option>
+                  <option value="2.0">2.0</option>
+                  <option value="3.0">3.0</option>
+                  <option value="4.0">4.0</option>
+                </select>
+              </div>
+              <select
+                name="spiceLevel"
+                value={filters.spiceLevel}
+                onChange={handleChange}
+                className="dashboard-input dashboard-select w-full"
+              >
+                <option value="">Select Spice Level</option>
+                <option value="closed door">Closed Door</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="explicit">Explicit</option>
+              </select>
+              <div className="trope-categories">
+                {Object.entries(tropeCategories).map(([category, tropes]) => (
+                  <div key={category} className="trope-category">
+                    <button
+                      type="button"
+                      className="trope-category-header"
+                      onClick={() => toggleCategory(category)}
+                    >
+                      {category}
+                    </button>
+                    {expandedCategory === category && (
+                      <div className="trope-options">
+                        {tropes.map((trope) => (
+                          <label key={trope} className="trope-option">
+                            <input
+                              type="checkbox"
+                              checked={filters.tropes.includes(trope)}
+                              onChange={() => handleTropeChange(trope)}
+                              className="dashboard-checkbox"
+                            />
+                            <span>{trope}</span>
+                          </label>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <button
+                type="submit"
+                className="dashboard-button w-full search-button"
+              >
+                Search
+              </button>
+            </form>
           </div>
         </div>
 
-        <div className="dashboard-card">
-          <h2 className="playfair-regular text-5xl text-center mb-8 text-gray-800">
-            Filter Your Books
-          </h2>
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              value={filters.title}
-              onChange={handleChange}
-              className="dashboard-input w-full placeholder-black"
-            />
-            <input
-              type="text"
-              name="author"
-              placeholder="Author"
-              value={filters.author}
-              onChange={handleChange}
-              className="dashboard-input w-full placeholder-black"
-            />
-            <select
-              name="subgenre"
-              value={filters.subgenre}
-              onChange={handleChange}
-              className="dashboard-input dashboard-select w-full"
-            >
-              <option value="">Select Subgenre</option>
-              <option value="Contemporary">Contemporary</option>
-              <option value="Dark Romance">Dark Romance</option>
-              <option value="Fantasy">Fantasy</option>
-              <option value="Gothic">Gothic</option>
-              <option value="Historical">Historical</option>
-              <option value="New Adult">New Adult</option>
-              <option value="Paranormal">Paranormal</option>
-              <option value="Regency">Regency</option>
-              <option value="Rom-Com">Rom-Com</option>
-              <option value="Romantic Suspense">Romantic Suspense</option>
-              <option value="Small Town">Small Town</option>
-              <option value="Sports Romance">Sports Romance</option>
-              <option value="Young Adult">Young Adult</option>
-            </select>
-            <div className="flex space-x-4">
-              <input
-                type="number"
-                name="minPages"
-                placeholder="Min Pages"
-                value={filters.minPages}
-                onChange={handleChange}
-                min="0"
-                className="dashboard-input w-full placeholder-black"
-              />
-              <input
-                type="number"
-                name="maxPages"
-                placeholder="Max Pages"
-                value={filters.maxPages}
-                onChange={handleChange}
-                min="0"
-                className="dashboard-input w-full placeholder-black"
-              />
-            </div>
-            <div className="flex space-x-4">
-              <select
-                name="minRating"
-                value={filters.minRating}
-                onChange={handleChange}
-                className="dashboard-input dashboard-select w-full"
-              >
-                <option value="">Min Rating</option>
-                <option value="1.0">1.0</option>
-                <option value="2.0">2.0</option>
-                <option value="3.0">3.0</option>
-                <option value="4.0">4.0</option>
-              </select>
-              <select
-                name="maxRating"
-                value={filters.maxRating}
-                onChange={handleChange}
-                className="dashboard-input dashboard-select w-full"
-              >
-                <option value="">Max Rating</option>
-                <option value="1.0">1.0</option>
-                <option value="2.0">2.0</option>
-                <option value="3.0">3.0</option>
-                <option value="4.0">4.0</option>
-              </select>
-            </div>
-            <select
-              name="spiceLevel"
-              value={filters.spiceLevel}
-              onChange={handleChange}
-              className="dashboard-input dashboard-select w-full"
-            >
-              <option value="">Select Spice Level</option>
-              <option value="closed door">Closed Door</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-              <option value="explicit">Explicit</option>
-            </select>
-            <div className="trope-categories">
-              {Object.entries(tropeCategories).map(([category, tropes]) => (
-                <div key={category} className="trope-category">
-                  <button
-                    type="button"
-                    className="trope-category-header"
-                    onClick={() => toggleCategory(category)}
-                  >
-                    {category}
-                  </button>
-                  {expandedCategory === category && (
-                    <div className="trope-options">
-                      {tropes.map((trope) => (
-                        <label key={trope} className="trope-option">
-                          <input
-                            type="checkbox"
-                            checked={filters.tropes.includes(trope)}
-                            onChange={() => handleTropeChange(trope)}
-                            className="dashboard-checkbox"
-                          />
-                          <span>{trope}</span>
-                        </label>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-            <button type="submit" className="dashboard-button w-full">
-              Search
-            </button>
-          </form>
+        {/* Right carousel */}
+        <div className="carousel-right">
+          <AutoplayCarousel />
         </div>
       </div>
     </div>

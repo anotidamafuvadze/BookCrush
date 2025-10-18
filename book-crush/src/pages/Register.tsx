@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { supabase } from '../services/supabase/supabaseClient.ts'
 import { useNavigate, Link } from "react-router-dom";
-import backgroundImage from '../assets/images/background.jpg';
+import backgroundImage from "../assets/images/background.webp";
 import "../styles/Register.css";
 
 export default function RegisterPage() {

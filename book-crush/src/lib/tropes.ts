@@ -1,5 +1,5 @@
 export const tropeCategories = {
-  "❤️ Core Romance Tropes": [
+  " Core Romance Tropes": [
     "enemies to lovers",
     "friends to lovers",
     "fake dating",
@@ -15,7 +15,7 @@ export const tropeCategories = {
     "arranged marriage",
     "only one bed",
   ],
-  "🏠 Settings & Contexts": [
+  " Settings & Contexts": [
     "small town",
     "workplace romance",
     "college romance",
@@ -29,7 +29,7 @@ export const tropeCategories = {
     "witchy romance",
     "cowboy / western romance",
   ],
-  "🪄 Supernatural & Fantasy Elements": [
+  " Supernatural & Fantasy Elements": [
     "chosen one",
     "destiny / destined lovers",
     "fae / fae court",
@@ -42,7 +42,7 @@ export const tropeCategories = {
     "magic / magical realism",
     "supernatural politics",
   ],
-  "💔 Emotional & Character Themes": [
+  " Emotional & Character Themes": [
     "tortured hero / heroine",
     "redemption",
     "trauma and healing",
@@ -54,7 +54,7 @@ export const tropeCategories = {
     "caretaker romance",
     "survivor heroine",
   ],
-  "👥 Relationship Dynamics": [
+  " Relationship Dynamics": [
     "protective hero",
     "single parent",
     "bodyguard hero",
@@ -66,7 +66,7 @@ export const tropeCategories = {
     "age gap romance",
     "playboy reformed",
   ],
-  "🎭 Themes & Motifs": [
+  " Themes & Motifs": [
     "betrayal",
     "class difference / social divide",
     "family secrets",
@@ -79,7 +79,7 @@ export const tropeCategories = {
     "workplace power dynamics",
     "comedy / rom-com tone",
   ],
-  "📖 Story Structures & Styles": [
+  " Story Structures & Styles": [
     "found family",
     "dual timeline",
     "multiple POV",
@@ -91,7 +91,7 @@ export const tropeCategories = {
     "suspense",
     "tragic ending",
   ],
-  "🏳️‍🌈 LGBTQ+ & Inclusivity Themes": [
+  " LGBTQ+ & Inclusivity Themes": [
     "LGBTQ+ romance",
     "sapphic romance",
     "coming of age (LGBTQ+)",
@@ -100,7 +100,7 @@ export const tropeCategories = {
     "found family (LGBTQ+)",
     "coming out arc",
   ],
-  "🏞️ Mystery / Adventure Subgenres": [
+  " Mystery / Adventure Subgenres": [
     "romantic suspense",
     "crime-solving couple",
     "undercover hero",
@@ -108,7 +108,7 @@ export const tropeCategories = {
     "hacker hero",
     "magical quest",
   ],
-  "💎 Unique or Niche Concepts": [
+  " Unique or Niche Concepts": [
     "rockstar romance",
     "reality TV setting",
     "culinary / foodie romance",

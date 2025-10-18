@@ -24,6 +24,8 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* Prevent horizontal scrolling */
+  font-weight: 300; /* Lighter weight for elegance */
+  font-family: 'Roboto', sans-serif; /* Modern font */
 }
 
 html {
@@ -32,16 +34,28 @@ html {
 
 .dashboard-header {
   display: flex;
+  flex-direction: column; /* Stack the header and buttons vertically */
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  padding: 1rem 2rem;
-  font-size: 3rem !important;
+  font-size: 6em; /* Increase font size */
+  font-weight: 300; /* Thicker font for better readability */
+  text-align: center; /* Center text alignment */
+  font-family: "Bebas Neue", sans-serif;
+  color: rgb(255, 252, 246); 
+  margin-top: -120px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .dashboard-header-buttons {
   display: flex;
   gap: 1rem;
+
+  justify-content: center; /* Center the buttons horizontally */ 
+  margin-top: -9rem; /* Reduce space between the header and buttons */
+  /* width: 500px;
+  height: 70px; */
+
 }
 
 .dashboard-content {
@@ -50,6 +64,10 @@ html {
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-weight: 300; /* Lighter weight for elegance */
+  font-family: 'Roboto', sans-serif; 
+  width: 70%; /* Adjust width to fit between carousels */
+  margin: 0 auto; /* Center the content horizontally */
 }
 
 .dashboard-card {
@@ -59,19 +77,33 @@ html {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  width: 600px;
+  width: 700px;
   max-width: 90vw;
+  font-weight: 300; /* Lighter weight for elegance */
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  margin-top: 2rem; /* Add spacing below the header */
 }
 
 .dashboard-input {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid #000000;
-  border-radius: 12px;
+  border-radius: 20px; /* Increased border-radius for more rounded inputs */
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
   margin-bottom: 1.5rem;
   margin-right: 0.5rem;
+  font-weight: 500; /* Slightly thicker font weight */
+  font-family: 'Roboto', sans-serif; /* Modern font */
+}
+
+.dashboard-input.rating {
+  width: 200px; /* Increased width for min and max rating inputs */
+  border-radius: 20px;
+}
+
+.dashboard-input.page {
+  width: auto; /* Reverted to original width for min and max page inputs */
 }
 
 .dashboard-input::placeholder {
@@ -85,23 +117,26 @@ html {
 }
 
 .dashboard-button {
-  background: linear-gradient(135deg, #fff0f7, #ffa9bf);
-    border: 1px solid #000000;
-  border-radius: 12px;
-  padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: rgb(0, 0, 0);
+  background: #ffc9d6;
+  border: 1px solid #000000;
+  border-radius: 30px; /* More rounded buttons */
+  padding: 1rem 2rem;
+  font-size: 1.8rem; /* Slightly larger font size */
+  font-weight: 300; /* Revert to thinner font weight for elegance */
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  color: #000000;
+  text-align: center; /* Center the text */
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow */
 }
 
 .dashboard-button:hover {
-  background: linear-gradient(135deg, #ffeaa9, #fff1f8);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+  background: #fff8e1;
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2); /* Enhanced shadow on hover */
 }
 
 .dashboard-checkbox {
@@ -116,16 +151,14 @@ html {
   font-style: normal;
 }
 
-.bebas-neue-header {
-  font-family: "Bebas Neue", sans-serif;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  font-weight: 400;
-  font-style: normal;
-  letter-spacing: 3px;
-  margin: 0;
-  line-height: 1; /* Keeps text compact */
-  margin-top: -0.8rem; /* Slightly move up to balance space */
+
+.header {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 300; /* Lighter weight for elegance */
+  margin-top: -10px; /* Move the text up */
+  text-align: center;
+  color:rgb(54, 54, 54)
 }
 
 .trope-category {
@@ -136,19 +169,21 @@ html {
 .trope-category-header {
   background: #ffe4eb;
   color: rgb(0, 0, 0);
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 300; /* Thicker font for better readability */
+  font-family: 'Roboto', sans-serif; /* Modern font */
   border: 1px solid #000000;
-  border-radius: 8px;
+  border-radius: 30px; /* More rounded buttons */
   padding: 0.5rem 1rem;
+  text-align: center; /* Center the text */
   cursor: pointer;
   transition: background 0.3s ease;
   width: 100%;
-  text-align: left;
 }
 
 .trope-category-header:hover {
   background: #edb2c0;
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2); 
 }
 
 .trope-options {
@@ -161,17 +196,21 @@ html {
 .trope-option {
   display: flex;
   align-items: center;
+  justify-content: center; /* Center the text */
   gap: 0.5rem;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid #000000;
-  border-radius: 8px;
+  border-radius: 30px; /* More rounded buttons */
   padding: 0.5rem 1rem;
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  font-weight: 300; /* Slightly thicker font weight */
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .trope-option:hover {
   background: #ffe5ec;
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2); 
 }
 
 .trope-option input {
@@ -182,11 +221,14 @@ html {
   appearance: none;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid #000000;
-  border-radius: 12px;
+  border-radius: 20px;
+  width: 200px;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
   cursor: pointer;
+  font-weight: 500; /* Slightly thicker font weight */
+  font-family: 'Roboto', sans-serif; /* Modern font */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
@@ -212,5 +254,54 @@ html {
 
 .dashboard-select option:hover {
   background: #ffc9e4; /* Slightly darker pink on hover */
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2); 
+}
+
+.search-button {
+  margin-top: 1rem; /* Space above the button */
+}
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  align-items: flex-start;
+  margin-left: 220px; 
+  margin-right: 220px;
+}
+
+
+
+.carousel-left{
+  left: 100px;
+  width: 200px; /* Fixed width for the carousel */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
+.carousel-right {
+  right: 125px;
+  width: 200px; /* Fixed width for the carousel */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
+
+.top-header {
+  justify-content: center;
+  align-items: center;
+  margin-left: -80px;
+  margin-top: 30px;
+  
 }
 

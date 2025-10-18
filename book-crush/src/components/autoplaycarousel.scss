@@ -1,0 +1,48 @@
+.carousel-container {
+  overflow: hidden;
+  position: fixed; /* Fix the carousel to the viewport */
+  height: 100%;
+  width: 230px; /* Fixed width for the carousel */
+  top: 0vh; /* Start slightly above the top of the viewport */
+  z-index: 10; /* Ensure it stays above other content */
+}
+
+.carousel-track {
+  display: flex;
+  flex-direction: column; /* Vertical layout */
+  position: absolute;
+  top: 0;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  animation: slide-vertical 40s linear infinite;
+}
+
+@keyframes slide-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%); /* Move up by half (the original set) */
+  }
+}
+
+.carousel-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 260px; /* Match the image width */
+  height: auto; /* Adjust height to fit the image */
+  background: transparent; /* Make the background transparent */
+  border-radius: 0; /* Remove border radius */
+  box-shadow: none; /* Remove shadow */
+  flex-shrink: 0; /* Prevent cards from shrinking */
+}
+
+.carousel-card > img {
+  width: 85%; /* Ensure the image fills the card */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 40px; /* Add rounded corners on both sides */
+  object-fit: cover; /* Ensure the image covers the space */
+}
