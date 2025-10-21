@@ -83,20 +83,31 @@ function Swiping() {
   };
 
   const handleCardLeftScreen = (bookId: React.Key | null | undefined) => {
-    // Ensure the currentIndex is only updated when the card fully leaves the screen
-    setCurrentIndex((prev) => prev + 1);
+    setCurrentIndex((prev) => prev + 1); // Update the current index
   };
 
-  if (message) {
+  if (message || books.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <p className="text-xl text-gray-700">{message}</p>
-        <button
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-          onClick={() => navigate("/dashboard")}
-        >
-          Go Back to Dashboard
-        </button>
+      <div
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          minHeight: "100vh",
+          width: "100%",
+        }}
+        className="swiping-overlay"
+      >
+        <div className="no-books-message">
+          <h2>No books found. Please try again.</h2>
+          <button
+            className="swipe-button"
+            onClick={() => navigate("/")}
+          >
+            Go Back to Dashboard
+          </button>
+        </div>
       </div>
     );
   }
@@ -117,76 +128,9 @@ function Swiping() {
         <div className="bg-red-100 text-red-700 p-4 mb-4 rounded">{error}</div>
       )}
 
-      <div className="relative flex items-center justify-center min-h-[60vh] p-2">
-        {books.slice(currentIndex, currentIndex + 1).map((book: Book) => {
-          const coverUrl = safeCover(book.cover_url) ?? FALLBACK_COVER;
-
-          return (
-            <div className="swiping-card-container" key={String(book.id)}>
-              <TinderCard
-                onSwipe={(dir) => handleSwipe(dir, book)}
-                onCardLeftScreen={() => handleCardLeftScreen(book.id)}
-                preventSwipe={["up", "down"]}
-                swipeRequirementType="position" // Use position-based swipe detection
-                swipeThreshold={50} // Reduce the swipe threshold to make the swipe faster
-              >
-                <div className="swiping-card pointer-events-auto">
-                  <img
-                    src={coverUrl}
-                    alt={book.title ?? "Book cover"}
-                    className="hidden"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src =
-                        FALLBACK_COVER;
-                    }}
-                  />
-                  <div className="swiping-card-content">
-                    <h2 className="swiping-card-title">{book.title}</h2>
-                    <p className="swiping-card-author">{book.author}</p>
-                    {book.pages && (
-                      <p className="swiping-card-details">{book.pages} pages</p>
-                    )}
-                    {(book.rating || book.number_of_ratings) && (
-                      <p className="swiping-card-details">
-                        Rating: {book.rating ?? "—"} (
-                        {book.number_of_ratings ?? "0"} ratings)
-                      </p>
-                    )}
-                    {book.synopsis && (
-                      <p className="swiping-card-synopsis">
-                        {book.synopsis}...
-                      </p>
-                    )}
-                    {book.tropes && (
-                      <p className="swiping-card-details">
-                        Tropes: {book.tropes}
-                      </p>
-                    )}
-                    {book.subgenre && (
-                      <p className="swiping-card-details">
-                        Subgenre: {book.subgenre}
-                      </p>
-                    )}
-                    {book.spice_level && (
-                      <p className="swiping-card-details">
-                        Spice Level: {book.spice_level}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </TinderCard>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Centered buttons */}
-      <div className="centered-buttons">
-        <button
-          className="swipe-button"
-          onClick={() => navigate("/")}
-        >
+      {/* Top buttons */}
+      <div className="top-buttons">
+        <button className="swipe-button" onClick={() => navigate("/")}>
           Dashboard
         </button>
         <button
@@ -195,6 +139,80 @@ function Swiping() {
         >
           Want to Read Shelf
         </button>
+      </div>
+
+      <div className="relative flex items-center justify-center min-h-[60vh] p-2">
+        {currentIndex >= books.length ? (
+          // End of list message
+          <div className="end-of-list-message">
+            <h2>You've reached the end of the list!</h2>
+          </div>
+        ) : (
+          // Render the current book
+          books.slice(currentIndex, currentIndex + 1).map((book: Book) => {
+            const coverUrl = safeCover(book.cover_url) ?? FALLBACK_COVER;
+
+            return (
+              <div className="swiping-card-container" key={String(book.id)}>
+                <TinderCard
+                  onSwipe={(dir) => handleSwipe(dir, book)}
+                  onCardLeftScreen={() => handleCardLeftScreen(book.id)}
+                  preventSwipe={["up", "down"]}
+                  swipeRequirementType="position" // Use position-based swipe detection
+                  swipeThreshold={50} // Reduce the swipe threshold to make the swipe faster
+                >
+                  <div className="swiping-card pointer-events-auto">
+                    <img
+                      src={coverUrl}
+                      alt={book.title ?? "Book cover"}
+                      className="hidden"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src =
+                          FALLBACK_COVER;
+                      }}
+                    />
+                    <div className="swiping-card-content">
+                      <h2 className="swiping-card-title">{book.title}</h2>
+                      <p className="swiping-card-author">{book.author}</p>
+                      {book.pages && (
+                        <p className="swiping-card-details">
+                          {book.pages} pages
+                        </p>
+                      )}
+                      {(book.rating || book.number_of_ratings) && (
+                        <p className="swiping-card-details">
+                          Rating: {book.rating ?? "—"} (
+                          {book.number_of_ratings ?? "0"} ratings)
+                        </p>
+                      )}
+                      {book.synopsis && (
+                        <p className="swiping-card-synopsis">
+                          {book.synopsis}...
+                        </p>
+                      )}
+                      {book.tropes && (
+                        <p className="swiping-card-details">
+                          Tropes: {book.tropes}
+                        </p>
+                      )}
+                      {book.subgenre && (
+                        <p className="swiping-card-details">
+                          Subgenre: {book.subgenre}
+                        </p>
+                      )}
+                      {book.spice_level && (
+                        <p className="swiping-card-details">
+                          Spice Level: {book.spice_level}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </TinderCard>
+              </div>
+            );
+          })
+        )}
       </div>
 
       <p className="swiping-card-message select-none pointer-events-none">

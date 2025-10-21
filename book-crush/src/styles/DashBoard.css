@@ -47,12 +47,23 @@ html {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
+.user-greeting {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 300; /* Lighter weight for elegance */
+  margin-top: -120px; /* Move the text up */
+  text-align: center;
+  color:rgb(54, 54, 54);
+  text-shadow: none !important;
+  
+}
+
 .dashboard-header-buttons {
   display: flex;
   gap: 1rem;
 
   justify-content: center; /* Center the buttons horizontally */ 
-  margin-top: -9rem; /* Reduce space between the header and buttons */
+  margin-top: 0; /* Adjust spacing between greeting and buttons */
   /* width: 500px;
   height: 70px; */
 
@@ -303,5 +314,17 @@ html {
   margin-left: -80px;
   margin-top: 30px;
   
+}
+
+.end-of-list-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: rgb(54, 54, 54);
+  margin-top: 2rem;
 }
 

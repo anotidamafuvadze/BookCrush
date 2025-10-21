@@ -250,6 +250,18 @@
   transform: translateX(-50%);
 }
 
+.top-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensure buttons are above other elements */
+}
+
 .swipe-button {
   background: #ffc9d6;
   border: 1px solid #000000;
@@ -271,4 +283,53 @@
   background: #fff8e1;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2);
+}
+
+.end-of-list-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  position: absolute; /* Ensure it's positioned relative to the screen */
+  top: 45%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for the element's size */
+}
+
+.end-of-list-message h2 {
+  margin-bottom: 1rem;
+}
+
+.end-of-list-message .swipe-button {
+  margin-top: 1rem;
+}
+
+.no-books-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: rgb(36, 36, 36);
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for the element's size */
+}
+
+.no-books-message h2 {
+  margin-bottom: 1rem;
+}
+
+.no-books-message .swipe-button {
+  margin-top: 1rem;
 }

@@ -1,21 +1,72 @@
 import { useState } from "react";
-import { supabase } from '../services/supabase/supabaseClient.ts'
+import { supabase } from "../services/supabase/supabaseClient.ts";
 import { useNavigate, Link } from "react-router-dom";
 import backgroundImage from "../assets/images/background.webp";
 import "../styles/Register.css";
 
 export default function RegisterPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  async function handleSignUp(e: React.FormEvent) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signUp({ email, password });
-    if (error) setError(error.message);
-    else navigate("/");
-  }
+    setError(null);
+
+    const { name, email, password } = formData;
+
+    try {
+      const { data: signUpData, error: signUpError } =
+        await supabase.auth.signUp({
+          email,
+          password,
+        });
+
+      if (signUpError) {
+        console.error("SignUp Error:", signUpError);
+
+        // Handle specific error messages
+        if (signUpError.message.includes("duplicate key value")) {
+          setError(
+            "This email is already registered. Please use a different email."
+          );
+        } else if (signUpError.message.includes("password")) {
+          setError("Password is too weak. Please use at least 6 characters.");
+        } else {
+          setError("An unexpected error occurred. Please try again.");
+        }
+        console.log("signup error:", signUpError.message);
+        return;
+      }
+
+      const user = signUpData.user;
+      if (user) {
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .insert([{ id: user.id, name }]);
+
+        if (profileError) {
+          console.error("Profile Insert Error:", profileError);
+          setError("Failed to save user profile. Please try again.");
+          return;
+        }
+
+        navigate("/");
+      }
+    } catch (err) {
+      console.error("Registration Error:", err);
+      setError("Failed to register. Please try again.");
+    }
+  };
 
   return (
     <div
@@ -35,7 +86,7 @@ export default function RegisterPage() {
     >
       <div className="register-content">
         <div className="flex flex-col items-center mb-6 text-center">
-          <h1 className="bebas-neue-header text-9xl text-white mb-2 drop-shadow-lg">
+          <h1 className="register-header text-9xl text-white mb-2 drop-shadow-lg">
             BOOK CRUSH
           </h1>
           <p className="playfair-display-subtitle text-2xl text-white/90 drop-shadow-md mb-4">
@@ -47,20 +98,31 @@ export default function RegisterPage() {
           <h2 className="playfair-regular text-3xl text-center mb-8 text-gray-800">
             Join Book Crush
           </h2>
-          <form onSubmit={handleSignUp} className="flex flex-col space-y-4">
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email Address"
-              type="email"
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
               className="register-input w-full"
               required
             />
             <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              className="register-input w-full"
+              required
+            />
+            <input
               type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
               className="register-input w-full"
               required
             />

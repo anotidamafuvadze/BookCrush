@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../services/supabase/supabaseClient.ts";
 import "../styles/DashBoard.css";
 import { getBooks } from "../services/api/booksAPI.ts";
 import { tropeCategories } from "../lib/tropes.ts";
@@ -7,6 +8,7 @@ import backgroundImage from "../assets/images/background.webp";
 import AutoplayCarousel from "../components/AutoplayCarousel.tsx"; // Import the carousel component
 
 function DashBoard() {
+  const [userName, setUserName] = useState<string | null>(null);
   const [filters, setFilters] = useState({
     title: "",
     author: "",
@@ -22,6 +24,71 @@ function DashBoard() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null); // State for error handling
   const navigate = useNavigate(); // Initialize useNavigate
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function load() {
+      // 1) make sure we actually have a session
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession();
+      if (sessionError) {
+        console.error(sessionError);
+        if (mounted) setError("Failed to get session.");
+        return;
+      }
+      const user = session?.user;
+      if (!user) {
+        if (mounted) setUserName(null); // not logged in
+        return;
+      }
+
+      // 2) read profile (use maybeSingle to avoid throwing on 0 rows)
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("name")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      if (profileError) {
+        console.error(profileError);
+        if (mounted) setError("Failed to fetch user information.");
+        return;
+      }
+
+      if (mounted)
+        setUserName(profile?.name ?? user.email?.split("@")[0] ?? "User");
+    }
+
+    load();
+
+    // 3) keep it in sync if auth state changes (login/logout/refresh)
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, sess) => {
+      if (!sess?.user) {
+        setUserName(null);
+        return;
+      }
+      supabase
+        .from("profiles")
+        .select("name")
+        .eq("id", sess.user.id)
+        .maybeSingle()
+        .then(({ data, error }) => {
+          if (error) {
+            setUserName("User");
+          } else {
+            setUserName(data?.name ?? sess.user.email?.split("@")[0] ?? "User");
+          }
+        });
+    });
+
+    return () => {
+      mounted = false;
+      sub.subscription.unsubscribe();
+    };
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -116,12 +183,27 @@ function DashBoard() {
           )}
           <div className="">
             <div className="dashboard-header">
-              <h1>
-                BOOK CRUSH
-              </h1>
+              <div>
+                <h1>BOOK CRUSH</h1>
+                <p className="user-greeting">Hi {userName || "User"}!</p>{" "}
+              </div>
+              
               <div className="dashboard-header-buttons">
-                <button className="dashboard-button" onClick={() => navigate("/want-to-read")}>Want to Read</button>
-                <button className="dashboard-button">Logout</button>
+                <button
+                  className="dashboard-button"
+                  onClick={() => navigate("/want-to-read")}
+                >
+                  Want to Read
+                </button>
+                <button
+                  className="dashboard-button"
+                  onClick={async () => {
+                    await supabase.auth.signOut();
+                    navigate("/login");
+                  }}
+                >
+                  Logout
+                </button>
               </div>
             </div>
           </div>

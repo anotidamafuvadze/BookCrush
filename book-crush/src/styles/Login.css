@@ -7,11 +7,12 @@
   line-height: 1; /* Keeps text compact */
   width: 100%;
   font-size: 8em; 
-  font-weight: 500;
+  font-weight: 600;
   text-align: center; /* Center text alignment */
   color: rgb(255, 252, 246); 
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   margin-top: -10px;
+  letter-spacing: 5px;
 }
 
 .playfair-display-subtitle {

@@ -121,13 +121,6 @@ export async function getBooks(opts: GetBooksOpts = {}) {
     url.searchParams.set("tropes", likeVal(tropesIlike));
   }
 
-  // AND: each term must appear somewhere in the tropes text
-  if (tropesAll?.length) {
-    for (const trope of tropesAll) {
-      url.searchParams.append("tropes", likeVal(trope));
-    }
-  }
-
   // OR: any of the terms can match, use or=(t1,t2,...) with ilike.*term*
   if (tropesAny?.length) {
     const orClauses = tropesAny.map((t) => `tropes.${likeVal(t)}`).join(",");

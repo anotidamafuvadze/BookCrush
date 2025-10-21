@@ -1,30 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
-.bebas-neue-header {
+.register-header {
   font-family: "Bebas Neue", sans-serif;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  font-weight: 400;
   font-style: normal;
-  letter-spacing: 3px;
-  font-size: 8rem;
-  margin-bottom: 0.25rem;
-  line-height: 1;
-  margin-top: -0.8rem;
+  margin-bottom: 0.25rem; /* Reduced space below the header */
+  line-height: 1; /* Keeps text compact */
+  width: 100%;
+  font-size: 8em; 
+  font-weight: 600;
+  text-align: center; /* Center text alignment */
+  color: rgb(255, 252, 246); 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  margin-top: -10px;
+  letter-spacing: 5px;
 }
 
 .playfair-display-subtitle {
-  font-family: "Playfair Display", serif;
+  font-family: 'Roboto', sans-serif; 
   font-weight: 400;
   font-style: italic;
-  font-size: 2.2rem;
-  margin-top: 0;
-}
-
-.playfair-regular {
-  font-family: "Playfair Display", serif;
-  font-weight: 400;
-  font-style: normal;
+  font-size: 2.2rem; /* Slightly larger subtitle */
+  margin-top: 0; /* Removes any extra space above */
+  color: rgb(0, 0, 0);
 }
 
 .register-overlay {
@@ -58,7 +55,7 @@
 
 .register-input {
   background: rgba(255, 255, 255, 0.9);
-  border: 2px solid #e5e7eb;
+  border: 1px solid #000000;
   border-radius: 12px;
   padding: 1rem;
   font-size: 1rem;
@@ -67,27 +64,31 @@
 }
 
 .register-input:focus {
-  outline: none;
+  outline: black;
   border-color: #ffc9e4;
   box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1);
 }
 
 .register-button {
-  background: linear-gradient(135deg, #fff0f7, #ffa9bf);
-  border: none;
-  border-radius: 12px;
-  padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: rgb(0, 0, 0);
+  background: #ffc9d6;
+  border: 1px solid #000000;
+  border-radius: 30px; /* More rounded buttons */
+  padding: 1rem 2rem;
+  font-size: 1rem; /* Slightly larger font size */
+  font-weight: 300; /* Lighter weight for elegance */
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  color: #000000;
+  text-align: center; /* Center the text */
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+  margin-bottom: 1rem;
 }
 
 .register-button:hover {
-  background: linear-gradient(135deg, #ffeaa9, #fff1f8);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+  background: #fff8e1;
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2); /* Enhanced shadow on hover */
 }
