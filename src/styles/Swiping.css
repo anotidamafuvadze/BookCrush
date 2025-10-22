@@ -333,3 +333,20 @@
 .no-books-message .swipe-button {
   margin-top: 1rem;
 }
+
+.swiping-cover-img {
+  width: 60%;           /* make the cover smaller relative to the card */
+  max-width: 240px;     /* cap the absolute size */
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;  /* rounded corners */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  margin-top: 12px;
+  display: block;
+}
+
+/* optional: ensure content area adapts when image is present */
+.swiping-card {
+  /* ...existing code... */
+  padding-top: 8px; /* slight top padding so the image has breathing room */
+}

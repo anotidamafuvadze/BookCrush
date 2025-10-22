@@ -101,10 +101,7 @@ function Swiping() {
       >
         <div className="no-books-message">
           <h2>No books found. Please try again.</h2>
-          <button
-            className="swipe-button"
-            onClick={() => navigate("/")}
-          >
+          <button className="swipe-button" onClick={() => navigate("/")}>
             Go Back to Dashboard
           </button>
         </div>
@@ -162,10 +159,11 @@ function Swiping() {
                   swipeThreshold={50} // Reduce the swipe threshold to make the swipe faster
                 >
                   <div className="swiping-card pointer-events-auto">
+                    {/* replace hidden img with a visible, stylable image */}
                     <img
                       src={coverUrl}
                       alt={book.title ?? "Book cover"}
-                      className="hidden"
+                      className="swiping-cover-img"
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         (e.currentTarget as HTMLImageElement).src =

@@ -77,6 +77,9 @@ const WantToRead = () => {
       className="dashboard-overlay"
     >
       <div className="want-to-read-container">
+        {/* Added page title */}
+        <h1 className="title-header">Want to Read</h1>
+
         {error && <p className="error-message">{error}</p>}
         <div className="bookshelf">
           {books.map((book) => (

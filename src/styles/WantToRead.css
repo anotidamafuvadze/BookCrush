@@ -13,7 +13,7 @@
   gap: 30px; /* Increase gap between books */
   width: 100%;
   max-width: 1200px;
-  margin-top: 40px;
+  margin-top: -20px;
   justify-items: center; /* Center each book in its grid cell */
   margin-bottom: 50px;
 }
@@ -110,4 +110,47 @@
   background: #fff8e1; /* Match dashboard button hover background */
   transform: translateY(-2px); /* Slight lift on hover */
   box-shadow: 0 5px 15px rgba(236, 72, 153, 0.2); /* Enhanced shadow on hover */
+}
+
+.title-header {
+  --header-height: 96px; /* adjust if you want a taller/shorter header */
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 0 1rem;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Bebas Neue", sans-serif;
+  color: rgb(255, 252, 246);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  /* slightly larger responsive font size (clamped between 32px and 110px) */
+  font-size: clamp(32px, 6.5vw, 110px);
+  font-weight: 300;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  /* keep header visually compact */
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/* Reduce space so books sit closer to the title */
+.want-to-read-container {
+  padding-top: calc(var(--header-height, 96px) + 8px); /* was +16px */
+}
+
+/* Slightly reduce header height and spacing on very small screens */
+@media (max-width: 480px) {
+  .title-header {
+    --header-height: 72px;
+    font-size: clamp(20px, 8vw, 56px);
+  }
+  .want-to-read-container {
+    padding-top: calc(var(--header-height, 72px) + 6px); /* was larger */
+  }
 }
